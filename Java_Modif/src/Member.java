@@ -24,11 +24,11 @@ public class Member {
 		  return id;
 	  }
 	  
-//	  set nama
+//	  set name
 	  public void setName(String name) {
 		  this.name = name;
 	  }
-//	  get id
+//	  get name
 	  public String getName() {
 		  return name;
 	  }

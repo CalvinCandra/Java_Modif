@@ -100,7 +100,7 @@ public class main {
 	    }
 	  }
 
-	//  edit member id
+	//  edit member id agar tidak sama
 	  public static void addMember() {
 		Member member = new Member();
 		
@@ -145,7 +145,7 @@ public class main {
 	    library.receiveBook(memberId, bookId);
 	  }
 	  
-	//  buat method addbook
+	//  buat method addbook dan membuat id book tidak sama
 	  public static void addBook() {
 		  Book book = new Book();
 		  

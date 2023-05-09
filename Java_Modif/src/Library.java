@@ -4,7 +4,7 @@ abstract class Library {
 	public ArrayList<Book> books = new ArrayList<Book>();
 	public ArrayList<Member> members = new ArrayList<Member>();
 	  
-//	abstract
+//	method abstract
 	public abstract void addMember(Member member);
 	public abstract void giveBook(String bookId, String memberId);
 	public abstract void receiveBook(String bookId, String memberId);
