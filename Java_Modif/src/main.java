@@ -44,22 +44,22 @@ public class main {
 	    System.out.println("3. add member");
 	    System.out.println("4. borrow book");
 	    System.out.println("5. return book");
-	    System.out.println("6. dd book");
+	    System.out.println("6. Add book");
 	    System.out.println("================================");
 	  }
 
 	  public static void initLibraryData() {
 	    Book book1 = new Book();
-	    book1.id = "1";
-	    book1.title = "pemrograman java";
+	    book1.setId("1");
+	    book1.setTitle("pemrograman java");
 
 	    Book book2 = new Book();
-	    book2.id = "2";
-	    book2.title = "pemrograman oop";
-
+	    book2.setId("2");
+	    book2.setTitle("pemrograman oop");
+	   
 	    Book book3 = new Book();
-	    book3.id = "3";
-	    book3.title = "pemrograman android";
+	    book3.setId("3");
+	    book3.setTitle("pemrograman android");
 
 	    Member member1 = new Member();
 	    member1.setId("1");
@@ -90,7 +90,7 @@ public class main {
 
 	  public static void showBooks() {
 	    for (Book book : library.books) {
-	      System.out.println(book.id + " " + book.title);
+	      System.out.println(book.getId() + " " + book.getTitle());
 	    }
 	  }
 
@@ -132,7 +132,7 @@ public class main {
 	    System.out.print("id book : ");
 	    String bookId = scan.next();
 
-	    library.giveBook(memberId, bookId);
+	    library.giveBook(bookId, memberId);
 	  }
 
 	  public static void returnBook() {
@@ -142,7 +142,7 @@ public class main {
 	    System.out.print("id book : ");
 	    String bookId = scan.next();
 
-	    library.receiveBook(memberId, bookId);
+	    library.receiveBook(bookId, memberId);
 	  }
 	  
 	//  buat method addbook dan membuat id book tidak sama
@@ -151,17 +151,17 @@ public class main {
 		  
 		  try {
 			do {
-			  if(library.isBookIdExist(book.id) == true) {
+			  if(library.isBookIdExist(book.getId()) == true) {
 				System.out.println("ID Sudah Ada");
 			  }
 				  
 			  System.out.println("ID :");
-			  book.id = scan.next() ;
+			  book.setId(scan.next()) ;
 				  
-			}while(library.isBookIdExist(book.id) == true);
+			}while(library.isBookIdExist(book.getId()) == true);
 			  
-			System.out.println("Nama :");
-			book.title = scan.next();
+			System.out.println("Title Book :");
+			 book.setTitle(scan.next());
 			library.books.add(book); 
 		  }catch (Exception e) {
 			  System.out.println("Terjadi kesalahan: " + e.getMessage());

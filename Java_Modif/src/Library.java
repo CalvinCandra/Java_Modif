@@ -19,6 +19,7 @@ abstract class Library {
 		return this.members.indexOf(member);
 	}
 
+//	ngambil id member
 	protected Member getMemberById(String id) {
 		for (Member member : this.members) {
 		  if (member.getId().equals(id)) {
@@ -27,21 +28,23 @@ abstract class Library {
 		}
 		return null;
 	}
-		  
+	
+//	ngambil id book
 	protected Book getBookById(String id) {
 	    for (Book book : this.books) {
-	      if (book.id.equals(id)) {
+	      if (book.getId().equals(id)) {
 	        return book;
 	      }
 	    }
 	    return null;
 	 }
+
 	
-	
-	public Boolean isBookIdExist(String id) {
+//	mengecek id buku tidak sama
+	protected Boolean isBookIdExist(String id) {
 		Boolean isExist = false;
 		for (Book book : this.books) {
-		   if (book.id.equals(id)) {
+		   if (book.getId().equals(id)) {
 		     isExist = true;
 		   }
 		 }
@@ -62,11 +65,12 @@ class turunan extends Library{
 	@Override
 	public void giveBook(String bookId, String memberId) {
 		Book book = this.getBookById(bookId);
-		this.books.remove(book);
 		
 		Member member = this.getMemberById(memberId);
 		int memberIndex = this.getMemberIndex(member);
-	    
+
+		this.books.remove(book);
+		
 	    this.members.get(memberIndex).borrowedBooks.add(book);
 		
 	}
@@ -76,7 +80,8 @@ class turunan extends Library{
 	    Member member = this.getMemberById(memberId);
 	    int memberIndex = this.getMemberIndex(member);
 	    
-	    Book book = this.getBookById(bookId);
+
+	    Book book = this.members.get(memberIndex).getBookById(bookId);
 	    this.books.add(book);
 	    
 	    this.members.get(memberIndex).borrowedBooks.remove(book);

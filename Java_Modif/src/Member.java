@@ -32,4 +32,15 @@ public class Member {
 	  public String getName() {
 		  return name;
 	  }
+
+//	  melakukan pengecekan pada array borrowedBooks
+	  public Book getBookById(String bookId) {
+		for (Book book : this.borrowedBooks){
+			 if (book.getId().equals(bookId)) {
+			    return book;
+			 }
+		}
+		return null;
+	}
+	  
 }
