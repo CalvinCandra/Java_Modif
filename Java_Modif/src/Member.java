@@ -34,9 +34,9 @@ public class Member {
 	  }
 
 //	  melakukan pengecekan pada array borrowedBooks
-	  public Book getBookById(String bookId) {
+	  public Book getBookById(String Id) {
 		for (Book book : this.borrowedBooks){
-			 if (book.getId().equals(bookId)) {
+			 if (book.getId().equals(Id)) {
 			    return book;
 			 }
 		}
