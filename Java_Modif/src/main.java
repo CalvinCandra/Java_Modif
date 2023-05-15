@@ -149,22 +149,24 @@ public class main {
 	  public static void addBook() {
 		  Book book = new Book();
 		  
-		  try {
-			do {
-			  if(library.isBookIdExist(book.getId()) == true) {
-				System.out.println("ID Sudah Ada");
-			  }
-				  
-			  System.out.println("ID :");
-			  book.setId(scan.next()) ;
-				  
-			}while(library.isBookIdExist(book.getId()) == true);
-			  
-			System.out.println("Title Book :");
-			 book.setTitle(scan.next());
-			library.books.add(book); 
-		  }catch (Exception e) {
-			  System.out.println("Terjadi kesalahan: " + e.getMessage());
+		do {
+		  System.out.println("ID :");
+		  book.setId(scan.next()) ;
+		  
+		  if(library.isBookIdExist(book.getId()) == true) {
+			  System.out.println("ID Sudah Ada");
 		  }
+		  
+		  if(library.BukuDipinjam(book.getId())) {
+			  System.out.println("Buku dengan ID " + book.getId() + " sudah ada dan Sedang Dipinjam");
+		  }
+				  
+				  
+		}while(library.isBookIdExist(book.getId()) == true);
+		
+		System.out.println("Title Book :");
+		book.setTitle(scan.next());
+		
+		library.books.add(book); 
 	  }
 }

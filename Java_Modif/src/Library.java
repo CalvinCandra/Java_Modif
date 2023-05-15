@@ -30,14 +30,15 @@ abstract class Library {
 	}
 	
 //	ngambil id book
-	protected Book getBookById(String id) {
-	    for (Book book : this.books) {
-	      if (book.getId().equals(id)) {
-	        return book;
-	      }
-	    }
-	    return null;
-	 }
+		protected Book getBookById(String id) {
+		    for (Book book : this.books) {
+		      if (book.getId().equals(id)) {
+		        return book;
+		      }
+		    }
+		    return null;
+		 }
+	
 
 	
 //	mengecek id buku tidak sama
@@ -49,12 +50,22 @@ abstract class Library {
 		   }
 		 }
 		 return isExist;
-	  }
+	}
+	
+	protected boolean BukuDipinjam(String bookId) {
+		for (Member member : this.members) {
+		  if (member.getBookById(bookId) != null) {
+		     return true;
+		  }
+		}
+		return false;
+	}
 
 }
 
-// interhact
+// Inheritance
 class turunan extends Library{
+	
 	
 	@Override
 	public void addMember(Member member) {
@@ -72,20 +83,33 @@ class turunan extends Library{
 		this.books.remove(book);
 		
 	    this.members.get(memberIndex).borrowedBooks.add(book);
+	    System.out.println("Buku Id : " +book.getId()+ " Telah Berhasil Di Pinjam");
 		
 	}
-
+	
 	@Override
 	public void receiveBook(String bookId, String memberId) {
-	    Member member = this.getMemberById(memberId);
-	    int memberIndex = this.getMemberIndex(member);
-	    
-
-	    Book book = this.members.get(memberIndex).getBookById(bookId);
-	    this.books.add(book);
-	    
-	    this.members.get(memberIndex).borrowedBooks.remove(book);
+	try {
+		Member member = this.getMemberById(memberId);
+		int memberIndex = this.getMemberIndex(member);
+			
+			
+		Book book = this.members.get(memberIndex).getBookById(bookId);
 		
+		if(book == null) {
+			throw new Exception("Id Member Ini tidak Meminjam buku Dengan Id : " +bookId);
+		}
+		
+		this.books.add(book);
+		this.members.get(memberIndex).borrowedBooks.remove(book);
+		System.out.println("Buku Telah Berhasil di Kembalikan");
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
 	}
+			
+	}
+	
+
 
 }
